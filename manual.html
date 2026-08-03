@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TellMeKey ユーザーマニュアル</title>
+<style>
+  :root {
+    --accent: #2f6fd6;
+    --text: #2b3138;
+    --text-dim: #67707c;
+    --border: #d9dee5;
+    --bg-soft: #f4f6f9;
+    --warn-bg: #fff6e0;
+    --warn-border: #e8c56a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Segoe UI", "Hiragino Sans", "Meiryo", sans-serif;
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+  header {
+    background: #1e2126;
+    color: #fff;
+    padding: 28px 24px;
+  }
+  header h1 { margin: 0 0 6px; font-size: 26px; letter-spacing: 1px; }
+  header p { margin: 0; color: #aab4c0; }
+  main { max-width: 860px; margin: 0 auto; padding: 12px 24px 60px; }
+  h2 {
+    font-size: 20px;
+    border-left: 5px solid var(--accent);
+    padding-left: 10px;
+    margin: 44px 0 12px;
+  }
+  h3 { font-size: 16px; margin: 28px 0 8px; }
+  img.screenshot {
+    max-width: 420px;
+    width: 100%;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.12);
+  }
+  figure { margin: 16px 0; text-align: center; }
+  figcaption { color: var(--text-dim); font-size: 13px; margin-top: 6px; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+  th, td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
+  th { background: var(--bg-soft); font-weight: 600; }
+  code, kbd {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 13px;
+  }
+  code {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1px 6px;
+    word-break: break-all;
+  }
+  kbd {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid #b8c0cb;
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    padding: 0 6px;
+    margin: 0 1px;
+  }
+  .note {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 14px 0;
+  }
+  .warn {
+    background: var(--warn-bg);
+    border: 1px solid var(--warn-border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 14px 0;
+  }
+  .steps li { margin-bottom: 8px; }
+  ul li { margin-bottom: 4px; }
+  nav.toc {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 20px;
+    margin-top: 24px;
+  }
+  nav.toc ol { margin: 6px 0 0; padding-left: 22px; }
+  nav.toc a { color: var(--accent); text-decoration: none; }
+  nav.toc a:hover { text-decoration: underline; }
+  footer {
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 13px;
+    text-align: center;
+    padding: 18px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>TellMeKey ユーザーマニュアル</h1>
+  <p>いま使っているDAWのショートカットキーを、トラックにインサートするだけで確認できるプラグイン</p>
+</header>
+
+<main>
+
+<nav class="toc">
+  <strong>目次</strong>
+  <ol>
+    <li><a href="#about">TellMeKeyとは</a></li>
+    <li><a href="#requirements">動作環境</a></li>
+    <li><a href="#install">インストール</a></li>
+    <li><a href="#usage">基本的な使い方</a></li>
+    <li><a href="#compare">比較DAWの切り替え</a></li>
+    <li><a href="#keys">キー表記の見かた</a></li>
+    <li><a href="#settings">設定画面</a></li>
+    <li><a href="#customize">キーマップのカスタマイズ</a></li>
+    <li><a href="#faq">よくある質問</a></li>
+  </ol>
+</nav>
+
+<h2 id="about">1. TellMeKeyとは</h2>
+<p>
+TellMeKeyは、DAWのトラックにインサートするだけで、そのDAWでよく使う操作(再生・録音・分割・クオンタイズなど約47項目)のショートカットキーを一覧表示するプラグインです。音声には一切影響しません(完全パススルー)。
+</p>
+<p>
+最大の特徴は<strong>比較表示</strong>です。「前はAbleton Liveを使っていたが、いまはCubaseに乗り換えた」というようなとき、慣れたDAWのキーと今のDAWのキーを並べて確認できます。
+</p>
+
+<figure>
+  <img class="screenshot" src="ss.png" alt="TellMeKeyの画面。Cubase上で動作し、比較DAWにAbleton Liveを選択した状態">
+  <figcaption>Cubase上での表示例。左列が現在のDAW(Cubase)、右列が比較DAW(Ableton Live)のキー</figcaption>
+</figure>
+
+<h2 id="requirements">2. 動作環境</h2>
+<table>
+  <tr><th>OS</th><td>Windows 10 / 11(64bit)、macOS</td></tr>
+  <tr><th>プラグイン形式</th><td>VST3(Windows / macOS)、AU(macOS)</td></tr>
+  <tr><th>対応DAW(自動判別)</th><td>Cubase、Ableton Live、FL Studio、Fender Studio Pro(旧Studio Oneを含む)、Logic Pro、Pro Tools、REAPER、Bitwig Studio</td></tr>
+  <tr><th>その他</th><td>Windowsでは WebView2 ランタイムを使用します(Windows 11には標準搭載)</td></tr>
+</table>
+<p class="note">
+上記以外のDAWでもVST3が動くホストならプラグイン自体は起動しますが、「不明なDAW」と表示されショートカットは表示されません。
+</p>
+
+<h2 id="install">3. インストール</h2>
+<h3>Windows</h3>
+<ol class="steps">
+  <li><code>TellMeKey.vst3</code> フォルダを次の場所にコピーします:<br>
+      <code>C:\Program Files\Common Files\VST3\</code></li>
+  <li>DAWを起動(すでに起動中ならプラグインの再スキャン)します。</li>
+</ol>
+<h3>macOS</h3>
+<ol class="steps">
+  <li>VST3: <code>/Library/Audio/Plug-Ins/VST3/</code> にコピー</li>
+  <li>AU: <code>/Library/Audio/Plug-Ins/Components/</code> にコピー</li>
+</ol>
+
+<h2 id="usage">4. 基本的な使い方</h2>
+<ol class="steps">
+  <li>任意のオーディオ/インストゥルメントトラックのインサート(エフェクトスロット)に <strong>TellMeKey</strong> を追加します。</li>
+  <li>プラグイン画面を開くと、実行中のDAWが自動判別され、画面左上の「現在のDAW」に名前が表示されます。</li>
+  <li>その下に、カテゴリごと(トランスポート/カーソル移動/編集/トラック/表示・ズーム/ファイル)のショートカット一覧が表示されます。</li>
+</ol>
+<ul>
+  <li>キーが割り当てられていない操作は「—」と表示されます。</li>
+  <li>ウィンドウはドラッグでリサイズでき、サイズはプロジェクトに保存されます。</li>
+  <li>どのトラックにインサートしても表示内容は同じです。使い終わったら外してかまいません。</li>
+</ul>
+
+<h2 id="compare">5. 比較DAWの切り替え</h2>
+<p>
+画面上部の「比較DAW」ドロップダウンで別のDAWを選ぶと、表に列が追加され、同じ操作がそのDAWではどのキーかを並べて確認できます。「なし」を選ぶと現在のDAWのみの表示に戻ります。
+</p>
+<ul>
+  <li>選択した比較DAWはプロジェクトに保存され、次回開いたときも復元されます。</li>
+  <li>比較列のキーバッジは青枠で表示されます。</li>
+</ul>
+
+<h2 id="keys">6. キー表記の見かた</h2>
+<ul>
+  <li>組み合わせキーは <kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>S</kbd> のように1キー1バッジで表示されます(<code>Ctrl+Shift+S</code> の意味)。</li>
+  <li><kbd>Num 1</kbd> や <kbd>Num +</kbd> はテンキーのキーです。</li>
+  <li><kbd>Shift</kbd><kbd>ホイール</kbd> はキーとマウスホイールの組み合わせです。</li>
+  <li><strong>macでは自動的に</strong> <kbd>Ctrl</kbd>→<kbd>Cmd</kbd>、<kbd>Alt</kbd>→<kbd>Opt</kbd> に読み替えて表示されます。</li>
+  <li>Logic Proのキーは元からmac表記(<kbd>Cmd</kbd> / <kbd>Opt</kbd>)で収録されています。</li>
+</ul>
+
+<h2 id="settings">7. 設定画面</h2>
+<p>画面右上の ⚙ ボタンで設定画面を開きます。</p>
+<table>
+  <tr><th>JSONファイルを指定…</th><td>カスタマイズしたキーマップ定義(JSONファイル)を選んで読み込みます。以後はそのファイルが優先されます。</td></tr>
+  <tr><th>デフォルトに戻す</th><td>カスタムJSONの指定を解除し、内蔵のキーマップ定義に戻します。</td></tr>
+  <tr><th>再読み込み</th><td>指定中のJSONファイルを読み込み直します。ファイルを編集した後、DAWを再起動せずに反映できます。</td></tr>
+</table>
+<p class="note">
+カスタムJSONの指定は<strong>すべてのDAW・すべてのインスタンスで共通</strong>です。一度設定すれば、別のDAWや別のプロジェクトでも同じキーマップが使われます。
+</p>
+
+<h2 id="customize">8. キーマップのカスタマイズ</h2>
+<p>
+表示される操作・キー・ラベルはすべてJSONファイルで定義されており、自由に書き換えられます。
+</p>
+<ol class="steps">
+  <li>配布物に含まれる <code>keymap.json</code>(内蔵定義と同内容)を任意の場所にコピーします。</li>
+  <li>テキストエディタで開き、編集します。たとえば:
+    <ul>
+      <li><code>"label"</code> を書き換えれば表示言語を変えられます(英語版のサンプル <code>keymap.en.json</code> も同梱)。</li>
+      <li><code>"shortcuts"</code> のキーを自分のDAWのキーマップ設定に合わせて修正できます。</li>
+      <li>操作(行)を追加・削除することもできます。</li>
+    </ul>
+  </li>
+  <li>設定画面の「JSONファイルを指定…」で編集したファイルを選びます。</li>
+  <li>以後ファイルを編集したら「再読み込み」を押すだけで反映されます。</li>
+</ol>
+<p class="warn">
+<strong>ご注意</strong>: 内蔵のショートカットデータは各DAWの標準キーバインドをもとにした<strong>参考値</strong>です。DAWのバージョンやお使いのキーマッププリセットによって実際のキーと異なる場合があります。気になる箇所はJSONを編集してご自身の環境に合わせてください。
+</p>
+<p>
+JSONの形式が壊れている場合は警告が表示され、自動的に内蔵の定義に切り替わります(プラグインが動かなくなることはありません)。
+</p>
+
+<h2 id="faq">9. よくある質問</h2>
+
+<h3>Q. 「不明なDAW」と表示され、何も一覧が出ない</h3>
+<p>
+お使いのホストが自動判別の対象(<a href="#requirements">動作環境</a>参照)に含まれていません。この場合ショートカットは表示されません。対象DAWの追加には開発者向けの手順(ソース修正とビルド)が必要です。
+</p>
+
+<h3>Q. 画面が真っ白 / UIが表示されない(Windows)</h3>
+<p>
+WebView2ランタイムがインストールされていない可能性があります。Windows 11には標準搭載ですが、Windows 10では
+<a href="https://developer.microsoft.com/microsoft-edge/webview2/">Microsoftのサイト</a>から「WebView2 ランタイム(Evergreen)」をインストールしてください。
+</p>
+
+<h3>Q. 音質やレイテンシーに影響はある?</h3>
+<p>
+ありません。音声処理は何もせずそのまま通過させています(レイテンシー0サンプル)。
+</p>
+
+<h3>Q. 表示されるキーが実際のDAWと違う</h3>
+<p>
+内蔵データは標準キーバインドをもとにした参考値です。DAWのバージョン差やキーマッププリセット(Cubase互換キーマップ等)により異なることがあります。<a href="#customize">カスタマイズ</a>の手順でJSONを実際の環境に合わせて修正してください。
+</p>
+
+<h3>Q. 黄色い警告(カスタムJSONの読み込みに失敗)が出る</h3>
+<p>
+指定したJSONファイルが見つからないか、JSONの文法にエラーがあります(カンマの付け忘れ等が典型です)。その間は内蔵の定義で表示されています。ファイルを修正して「再読み込み」を押すか、「デフォルトに戻す」で指定を解除してください。
+</p>
+
+<h3>Q. プロジェクトに何が保存される?</h3>
+<p>
+比較DAWの選択とウィンドウサイズがプロジェクト(インスタンス)ごとに保存されます。カスタムJSONの指定場所はプロジェクトではなくPC全体の設定として保存されます。
+</p>
+
+</main>
+
+<footer>
+  TellMeKey — DAW Shortcut Reference Plugin
+</footer>
+
+</body>
+</html>

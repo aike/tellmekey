@@ -1,0 +1,144 @@
+name: Release
+
+# vで始まるタグ(例: v1.0.0)をpushすると、Windows/Mac用をビルドしてReleaseに登録する
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+env:
+  WEBVIEW2_VERSION: 1.0.1901.177
+
+jobs:
+  build-windows:
+    name: Build Windows (x64 VST3)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download WebView2 SDK
+        shell: pwsh
+        run: |
+          curl.exe -sL -o webview2.zip "https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2/${env:WEBVIEW2_VERSION}"
+          Expand-Archive webview2.zip -DestinationPath "external/webview2/Microsoft.Web.WebView2.${env:WEBVIEW2_VERSION}"
+
+      - name: Configure
+        run: cmake -S . -B build -G "Visual Studio 17 2022" -A x64
+
+      - name: Build
+        run: cmake --build build --config Release --target TellMeKey_VST3
+
+      - name: Package
+        shell: pwsh
+        run: |
+          $staging = "TellMeKey-${{ github.ref_name }}-Windows-x64"
+          New-Item -ItemType Directory -Path $staging | Out-Null
+          Copy-Item -Recurse "build/TellMeKey_artefacts/Release/VST3/TellMeKey.vst3" "$staging/"
+          Copy-Item README.md, manual.html, ss.png, LICENSE "$staging/"
+          Copy-Item "assets/keymap.json", "examples/keymap.en.json" "$staging/"
+          Compress-Archive -Path $staging -DestinationPath "$staging.zip"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows
+          path: TellMeKey-*-Windows-x64.zip
+          if-no-files-found: error
+
+  build-macos:
+    name: Build macOS (Apple Silicon VST3 + AU)
+    runs-on: macos-latest
+    env:
+      MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
+      MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+      MACOS_SIGNING_IDENTITY: ${{ secrets.MACOS_SIGNING_IDENTITY }}
+      APPLE_ID: ${{ secrets.APPLE_ID }}
+      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure
+        run: >
+          cmake -S . -B build
+          -DCMAKE_BUILD_TYPE=Release
+          -DCMAKE_OSX_ARCHITECTURES=arm64
+          -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0
+
+      - name: Build
+        run: cmake --build build
+
+      # ---- コード署名(シークレット設定時のみ。未設定ならad-hoc署名のまま) ----
+      - name: Import signing certificate
+        if: env.MACOS_CERTIFICATE != ''
+        run: |
+          KEYCHAIN_PATH="$RUNNER_TEMP/signing.keychain-db"
+          KEYCHAIN_PASSWORD="$(uuidgen)"
+          echo "$MACOS_CERTIFICATE" | base64 --decode > "$RUNNER_TEMP/certificate.p12"
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security import "$RUNNER_TEMP/certificate.p12" -P "$MACOS_CERTIFICATE_PASSWORD" \
+            -A -t cert -f pkcs12 -k "$KEYCHAIN_PATH"
+          security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security list-keychain -d user -s "$KEYCHAIN_PATH" login.keychain-db
+          rm "$RUNNER_TEMP/certificate.p12"
+
+      - name: Code sign plugins
+        if: env.MACOS_CERTIFICATE != ''
+        run: |
+          IDENTITY="${MACOS_SIGNING_IDENTITY:-Developer ID Application}"
+          for BUNDLE in \
+            "build/TellMeKey_artefacts/Release/VST3/TellMeKey.vst3" \
+            "build/TellMeKey_artefacts/Release/AU/TellMeKey.component"
+          do
+            codesign --force --options runtime --timestamp --sign "$IDENTITY" "$BUNDLE"
+            codesign --verify --strict --verbose=2 "$BUNDLE"
+          done
+
+      # ---- 公証(Apple ID関連のシークレット設定時のみ) ----
+      - name: Notarize and staple
+        if: env.MACOS_CERTIFICATE != '' && env.APPLE_ID != ''
+        run: |
+          ditto -c -k --keepParent "build/TellMeKey_artefacts/Release/VST3/TellMeKey.vst3" notarize-vst3.zip
+          ditto -c -k --keepParent "build/TellMeKey_artefacts/Release/AU/TellMeKey.component" notarize-au.zip
+          for ZIP in notarize-vst3.zip notarize-au.zip; do
+            xcrun notarytool submit "$ZIP" \
+              --apple-id "$APPLE_ID" \
+              --team-id "$APPLE_TEAM_ID" \
+              --password "$APPLE_APP_PASSWORD" \
+              --wait
+          done
+          xcrun stapler staple "build/TellMeKey_artefacts/Release/VST3/TellMeKey.vst3"
+          xcrun stapler staple "build/TellMeKey_artefacts/Release/AU/TellMeKey.component"
+
+      - name: Package
+        run: |
+          STAGING="TellMeKey-${{ github.ref_name }}-macOS-AppleSilicon"
+          mkdir "$STAGING"
+          cp -R "build/TellMeKey_artefacts/Release/VST3/TellMeKey.vst3" "$STAGING/"
+          cp -R "build/TellMeKey_artefacts/Release/AU/TellMeKey.component" "$STAGING/"
+          cp README.md manual.html ss.png LICENSE assets/keymap.json examples/keymap.en.json "$STAGING/"
+          ditto -c -k --keepParent "$STAGING" "$STAGING.zip"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: macos
+          path: TellMeKey-*-macOS-AppleSilicon.zip
+          if-no-files-found: error
+
+  release:
+    name: Create GitHub Release
+    needs: [build-windows, build-macos]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          merge-multiple: true
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: TellMeKey-*.zip
+          generate_release_notes: true

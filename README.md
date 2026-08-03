@@ -14,7 +14,28 @@
 
 
 
-## ビルド
+## インストール(利用者向け)
+
+[GitHubのReleaseページ](../../releases/latest)から、お使いの環境に合ったzipをダウンロードして展開してください。
+
+> **公式ビルドはGitHubのReleaseページで公開されるもののみです。**それ以外の場所で配布されているバイナリは公式のものではありません。
+
+- Windows: `TellMeKey-vX.X.X-Windows-x64.zip`
+- Mac(Apple Silicon): `TellMeKey-vX.X.X-macOS-AppleSilicon.zip`
+
+展開したら、プラグイン本体を以下の場所にコピーします:
+
+| OS | ファイル | コピー先 |
+|---|---|---|
+| Windows | `TellMeKey.vst3` | `C:\Program Files\Common Files\VST3\` |
+| macOS (VST3) | `TellMeKey.vst3` | `/Library/Audio/Plug-Ins/VST3/` |
+| macOS (AU) | `TellMeKey.component` | `/Library/Audio/Plug-Ins/Components/` |
+
+コピー後、DAWを起動(またはプラグインを再スキャン)し、エフェクトとして任意のトラックにインサートすれば使えます。
+
+**使い方の詳細は、zipに同梱されているHTMLマニュアル(`manual.html`)をブラウザで開いてご覧ください。**画面の見かた、比較DAWの切り替え、キーマップのカスタマイズ手順、トラブルシューティングを掲載しています。
+
+## ビルド(開発者向け)
 
 必要環境: CMake 3.22+ / Visual Studio 2022 (Windows) / Xcode (macOS)
 
@@ -32,6 +53,28 @@ cmake --build build --config Release --target TellMeKey_VST3
 - macOSでは `FORMATS AU VST3` により AU / VST3 の両方がビルドされます。
 
 成果物: `build/TellMeKey_artefacts/Release/VST3/TellMeKey.vst3`
+
+### リリース(GitHub Actions)
+
+`v`で始まるタグをpushすると、GitHub ActionsがWindows(x64 VST3)とApple Silicon Mac(arm64 VST3+AU)を自動ビルドし、zipをGitHub Releaseに登録します(`.github/workflows/release.yml`)。
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+macバイナリの署名・公証は、リポジトリのSecretsを設定すると自動で行われます(未設定の場合はad-hoc署名のままビルドされます):
+
+| Secret | 内容 |
+|---|---|
+| `MACOS_CERTIFICATE` | Developer ID Application証明書(.p12)をbase64エンコードした文字列(`base64 -i cert.p12`) |
+| `MACOS_CERTIFICATE_PASSWORD` | .p12のパスワード |
+| `MACOS_SIGNING_IDENTITY` | (任意)署名identity名。省略時は`Developer ID Application`で部分一致 |
+| `APPLE_ID` | (公証に必要)Apple IDのメールアドレス |
+| `APPLE_TEAM_ID` | (公証に必要)Developer TeamのID |
+| `APPLE_APP_PASSWORD` | (公証に必要)Apple IDのApp用パスワード |
+
+`MACOS_CERTIFICATE`のみ設定した場合は署名だけ、`APPLE_ID`等も設定した場合は`notarytool`による公証とstapleまで実行されます。
 
 ## JSONのカスタマイズ
 
@@ -125,3 +168,9 @@ src/                 JUCEプラグイン本体
   Settings           カスタムJSONパスのグローバル設定 (%APPDATA%/TellMeKey/)
   KeymapStore        JSON読み込み(カスタム優先→同梱デフォルトへフォールバック)
 ```
+
+## ライセンス
+
+本プロジェクトは [MITライセンス](LICENSE) で公開されています。
+
+依存フレームワークのJUCEは本プロジェクトには含まれず(ビルド時に取得)、JUCE自体のライセンス(AGPLv3または商用ライセンス)が適用されます。本プロジェクトをビルド・再配布する場合はJUCEのライセンス条件にもご注意ください。
