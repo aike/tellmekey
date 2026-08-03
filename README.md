@@ -28,8 +28,8 @@
 | OS | ファイル | コピー先 |
 |---|---|---|
 | Windows | `TellMeKey.vst3` | `C:\Program Files\Common Files\VST3\` |
-| macOS (VST3) | `TellMeKey.vst3` | `/Library/Audio/Plug-Ins/VST3/` |
-| macOS (AU) | `TellMeKey.component` | `/Library/Audio/Plug-Ins/Components/` |
+| macOS (VST3) | `TellMeKey.vst3` | `~/Library/Audio/Plug-Ins/VST3/` |
+| macOS (AU) | `TellMeKey.component` | `~/Library/Audio/Plug-Ins/Components/` |
 
 コピー後、DAWを起動(またはプラグインを再スキャン)し、エフェクトとして任意のトラックにインサートすれば使えます。
 
