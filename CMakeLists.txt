@@ -31,7 +31,19 @@ juce_add_plugin(TellMeKey
     COPY_PLUGIN_AFTER_BUILD FALSE
     NEEDS_WEB_BROWSER TRUE
     NEEDS_WEBVIEW2 TRUE
-    VST3_CATEGORIES "Fx Tools")
+    VST3_CATEGORIES "Other")
+
+# Manufacturer codeの使い分け:
+#   VST3 = "aike"(既存リリースとのID互換維持。VST3のFUIDは上のjuce_add_plugin時点の
+#          コンパイル定義から生成されるため、この後でプロパティを変えても影響しない)
+#   AU   = "Aike"(Appleの規約で全小文字コードは予約されておりビルドエラーになる。
+#          AUの識別子はInfo.plistのAudioComponentsのみで決まり、それはconfigure時に
+#          書き出されるInfo.txt経由で生成される)
+# _juce_write_configure_time_info はJUCE内部関数(JUCE 9.0.0で確認)。
+if(APPLE)
+    set_target_properties(TellMeKey PROPERTIES JUCE_PLUGIN_MANUFACTURER_CODE "Aike")
+    _juce_write_configure_time_info(TellMeKey)
+endif()
 
 target_sources(TellMeKey PRIVATE
     src/PluginProcessor.cpp

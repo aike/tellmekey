@@ -39,20 +39,41 @@
 
 必要環境: CMake 3.22+ / Visual Studio 2022 (Windows) / Xcode (macOS)
 
+JUCE 9.0.0 はFetchContentで自動取得されます。事前cloneがある場合は `-DFETCHCONTENT_SOURCE_DIR_JUCE=<path>` で指定できます。
+
+### Windows
+
 ```powershell
 cmake -S . -B build -G "Visual Studio 17 2022" -A x64
 cmake --build build --config Release --target TellMeKey_VST3
 ```
 
-- JUCE 9.0.0 はFetchContentで自動取得されます。事前cloneがある場合は `-DFETCHCONTENT_SOURCE_DIR_JUCE=<path>` で指定できます。
 - Windowsビルドには WebView2 SDK(NuGetパッケージ)が必要です。`external/webview2/` に `Microsoft.Web.WebView2.*` パッケージを展開して置くか、`-DJUCE_WEBVIEW2_PACKAGE_LOCATION=<dir>` で場所を指定してください。取得例:
   ```
   curl -L -o webview2.zip https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2/1.0.1901.177
   unzip webview2.zip -d external/webview2/Microsoft.Web.WebView2.1.0.1901.177
   ```
-- macOSでは `FORMATS AU VST3` により AU / VST3 の両方がビルドされます。
 
 成果物: `build/TellMeKey_artefacts/Release/VST3/TellMeKey.vst3`
+
+### macOS
+
+```bash
+cmake -S . -B build \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCMAKE_OSX_ARCHITECTURES=arm64 \
+  -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0
+cmake --build build
+```
+
+- `FORMATS AU VST3` により AU / VST3 の両方がビルドされます。
+- Intel Macでは `-DCMAKE_OSX_ARCHITECTURES=x86_64`、ユニバーサルバイナリにする場合は `-DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"` を指定してください。
+- ビルド後のAUの認識確認は `auval -v aufx Tmk1 Aike` でできます(manufacturerコードはVST3が`aike`、AUが`Aike`。詳細はCMakeLists.txtのコメント参照)。
+
+成果物:
+
+- VST3: `build/TellMeKey_artefacts/Release/VST3/TellMeKey.vst3`
+- AU: `build/TellMeKey_artefacts/Release/AU/TellMeKey.component`
 
 ### リリース(GitHub Actions)
 
