@@ -44,9 +44,11 @@ JUCE 9.0.0 はFetchContentで自動取得されます。事前cloneがある場�
 ### Windows
 
 ```powershell
-cmake -S . -B build -G "Visual Studio 17 2022" -A x64
+cmake -S . -B build -A x64
 cmake --build build --config Release --target TellMeKey_VST3
 ```
+
+- ジェネレータ未指定の場合、インストール済みの最新Visual Studioが自動選択されます。特定バージョンを使う場合は `-G "Visual Studio 17 2022"` のように指定してください。
 
 - Windowsビルドには WebView2 SDK(NuGetパッケージ)が必要です。`external/webview2/` に `Microsoft.Web.WebView2.*` パッケージを展開して置くか、`-DJUCE_WEBVIEW2_PACKAGE_LOCATION=<dir>` で場所を指定してください。取得例:
   ```

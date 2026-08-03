@@ -25,8 +25,11 @@ jobs:
           curl.exe -sL -o webview2.zip "https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2/${env:WEBVIEW2_VERSION}"
           Expand-Archive webview2.zip -DestinationPath "external/webview2/Microsoft.Web.WebView2.${env:WEBVIEW2_VERSION}"
 
+      # ジェネレータは指定しない(ランナーにインストール済みの最新Visual Studioを
+      # 自動選択させる)。windows-latestのVSバージョンはイメージ更新で変わるため、
+      # "Visual Studio 17 2022" のような固定指定はイメージ移行のたびに壊れる。
       - name: Configure
-        run: cmake -S . -B build -G "Visual Studio 17 2022" -A x64
+        run: cmake -S . -B build -A x64
 
       - name: Build
         run: cmake --build build --config Release --target TellMeKey_VST3
