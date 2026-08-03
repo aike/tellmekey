@@ -239,3 +239,44 @@ td.key.compare kbd { border-color: var(--accent); }
 }
 
 .back-button { margin-top: 14px; }
+
+/* --- window resize handle --- */
+#resizeHandle {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 18px;
+  height: 18px;
+  cursor: nwse-resize;
+  touch-action: none;
+  z-index: 100;
+}
+
+#resizeHandle::after {
+  content: "";
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  width: 12px;
+  height: 12px;
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  background: repeating-linear-gradient(
+    135deg,
+    transparent,
+    transparent 2px,
+    var(--text-dim) 2px,
+    var(--text-dim) 4px
+  );
+  opacity: 0.7;
+}
+
+#resizeHandle:hover::after {
+  background: repeating-linear-gradient(
+    135deg,
+    transparent,
+    transparent 2px,
+    var(--accent) 2px,
+    var(--accent) 4px
+  );
+  opacity: 1;
+}

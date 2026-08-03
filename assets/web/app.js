@@ -194,6 +194,40 @@ function applyKeymapResult(result) {
   renderSettings();
 }
 
+/* ---- window resize handle ---- */
+
+function initResizeHandle() {
+  const handle = $("resizeHandle");
+  let resizing = false;
+  let startX = 0, startY = 0, startW = 0, startH = 0;
+  let lastW = 0, lastH = 0;
+
+  handle.addEventListener("pointerdown", (e) => {
+    resizing = true;
+    startX = e.screenX;
+    startY = e.screenY;
+    // WebViewはエディタ全面を覆っているため、ビューポートのサイズ≒エディタのサイズ
+    startW = lastW = window.innerWidth;
+    startH = lastH = window.innerHeight;
+    handle.setPointerCapture(e.pointerId);
+    e.preventDefault();
+  });
+
+  handle.addEventListener("pointermove", (e) => {
+    if (!resizing) return;
+    const w = Math.round(startW + (e.screenX - startX));
+    const h = Math.round(startH + (e.screenY - startY));
+    if (w === lastW && h === lastH) return;
+    lastW = w;
+    lastH = h;
+    callNative("setEditorSize", w, h); // 上下限はネイティブ側でクランプされる
+  });
+
+  const stop = () => { resizing = false; };
+  handle.addEventListener("pointerup", stop);
+  handle.addEventListener("pointercancel", stop);
+}
+
 /* ---- init & events ---- */
 
 async function init() {
@@ -241,6 +275,8 @@ async function init() {
     applyKeymapResult(await callNative("reloadKeymap"));
     renderSettings();
   });
+
+  initResizeHandle();
 }
 
 document.addEventListener("DOMContentLoaded", init);

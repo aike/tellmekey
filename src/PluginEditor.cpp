@@ -10,7 +10,10 @@ TellMeKeyAudioProcessorEditor::TellMeKeyAudioProcessorEditor (TellMeKeyAudioProc
     addAndMakeVisible (webView);
     webView.goToURL (juce::WebBrowserComponent::getResourceProviderRoot());
 
-    setResizable (true, true);
+    // JUCE標準の右下グリップはWebViewの下に隠れて操作できないため使わない。
+    // リサイズはWeb UI内のハンドル(setEditorSizeネイティブ関数)と、
+    // ホストによるウィンドウ枠ドラッグの2経路で行う。
+    setResizable (true, false);
     setResizeLimits (380, 400, 1400, 1800);
     setSize (processorRef.editorWidth.load(), processorRef.editorHeight.load());
 }
@@ -55,6 +58,25 @@ juce::WebBrowserComponent::Options TellMeKeyAudioProcessorEditor::makeWebViewOpt
                     }
 
                     complete (result);
+                })
+            .withNativeFunction ("setEditorSize",
+                [this] (const juce::Array<juce::var>& args, juce::WebBrowserComponent::NativeFunctionCompletion complete)
+                {
+                    if (args.size() >= 2)
+                    {
+                        auto w = (int) args[0];
+                        auto h = (int) args[1];
+
+                        if (auto* c = getConstrainer())
+                        {
+                            w = juce::jlimit (c->getMinimumWidth(),  c->getMaximumWidth(),  w);
+                            h = juce::jlimit (c->getMinimumHeight(), c->getMaximumHeight(), h);
+                        }
+
+                        setSize (w, h);
+                    }
+
+                    complete ({});
                 })
             .withNativeFunction ("setCompareDaw",
                 [this] (const juce::Array<juce::var>& args, juce::WebBrowserComponent::NativeFunctionCompletion complete)
