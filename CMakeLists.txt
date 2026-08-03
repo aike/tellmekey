@@ -17,10 +17,22 @@ FetchContent_Declare(JUCE
     GIT_SHALLOW    TRUE)
 FetchContent_MakeAvailable(JUCE)
 
+# Manufacturer codeの使い分け:
+#   VST3 = "aike"(既存リリースとのID互換維持)
+#   AU   = "Aike"(Appleの規約で全小文字コードは予約されており、AUビルドがエラーになる)
+# macではjuce_add_pluginに "Aike" を渡してAU関連の生成物(Info.plist等)をすべてAikeにし、
+# VST3のFUIDの生成元であるコンパイル定義 JucePlugin_ManufacturerCode だけを
+# juce_add_plugin後に "aike" (0x61696b65) へ戻す。
+if(APPLE)
+    set(TMK_MANUFACTURER_CODE Aike)
+else()
+    set(TMK_MANUFACTURER_CODE aike)
+endif()
+
 juce_add_plugin(TellMeKey
     COMPANY_NAME "aikelab"
     PRODUCT_NAME "TellMeKey"
-    PLUGIN_MANUFACTURER_CODE aike
+    PLUGIN_MANUFACTURER_CODE ${TMK_MANUFACTURER_CODE}
     PLUGIN_CODE Tmk1
     FORMATS AU VST3
     IS_SYNTH FALSE
@@ -33,16 +45,17 @@ juce_add_plugin(TellMeKey
     NEEDS_WEBVIEW2 TRUE
     VST3_CATEGORIES "Other")
 
-# Manufacturer codeの使い分け:
-#   VST3 = "aike"(既存リリースとのID互換維持。VST3のFUIDは上のjuce_add_plugin時点の
-#          コンパイル定義から生成されるため、この後でプロパティを変えても影響しない)
-#   AU   = "Aike"(Appleの規約で全小文字コードは予約されておりビルドエラーになる。
-#          AUの識別子はInfo.plistのAudioComponentsのみで決まり、それはconfigure時に
-#          書き出されるInfo.txt経由で生成される)
-# _juce_write_configure_time_info はJUCE内部関数(JUCE 9.0.0で確認)。
+# VST3のIDを既存リリースと同じ "aike" に戻す(冒頭のコメント参照)。
+# AUの識別子はInfo.plist(AudioComponents)から決まるためこの置換の影響を受けない。
+# 定義名 JucePlugin_ManufacturerCode はJUCE内部の実装詳細(JUCE 9.0.0で確認)。
 if(APPLE)
-    set_target_properties(TellMeKey PROPERTIES JUCE_PLUGIN_MANUFACTURER_CODE "Aike")
-    _juce_write_configure_time_info(TellMeKey)
+    foreach(prop COMPILE_DEFINITIONS INTERFACE_COMPILE_DEFINITIONS)
+        get_target_property(tmk_defs TellMeKey ${prop})
+        list(TRANSFORM tmk_defs REPLACE
+            "^JucePlugin_ManufacturerCode=.*$"
+            "JucePlugin_ManufacturerCode=0x61696b65")
+        set_target_properties(TellMeKey PROPERTIES ${prop} "${tmk_defs}")
+    endforeach()
 endif()
 
 target_sources(TellMeKey PRIVATE
