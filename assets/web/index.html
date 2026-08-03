@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TellMeKey</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header id="appHeader">
+    <div class="title-row">
+      <span class="app-title">TellMeKey</span>
+      <button id="settingsButton" class="icon-button" title="設定">&#9881;</button>
+    </div>
+    <div class="daw-row" id="dawRow">
+      <div class="daw-current">
+        <span class="daw-label">現在のDAW</span>
+        <span class="daw-name" id="currentDawName">…</span>
+      </div>
+      <div class="daw-compare" id="compareBox">
+        <label class="daw-label" for="compareSelect">比較DAW</label>
+        <select id="compareSelect"></select>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div id="warningBanner" class="banner hidden"></div>
+
+    <section id="listView">
+      <div id="unknownPanel" class="unknown-panel hidden">
+        <div class="unknown-title">不明なDAW</div>
+        <div class="unknown-text">
+          このホストアプリケーションは自動判別に対応していないため、<br>
+          ショートカットは表示されません。
+        </div>
+      </div>
+      <div id="shortcutList"></div>
+    </section>
+
+    <section id="settingsView" class="hidden">
+      <h2>設定</h2>
+      <div class="settings-group">
+        <div class="settings-label">キーマップ定義ファイル</div>
+        <div id="keymapSource" class="settings-value"></div>
+        <div class="settings-buttons">
+          <button id="chooseFileButton">JSONファイルを指定…</button>
+          <button id="clearFileButton">デフォルトに戻す</button>
+          <button id="reloadButton">再読み込み</button>
+        </div>
+        <p class="settings-hint">
+          JSONファイルの操作名・DAW名・ショートカットを書き換えることで、
+          表示内容(日本語/英語など)を自由にカスタマイズできます。
+        </p>
+      </div>
+      <button id="backButton" class="back-button">&#8592; 一覧へ戻る</button>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

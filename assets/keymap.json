@@ -1,0 +1,646 @@
+{
+  "version": 1,
+  "language": "ja",
+  "daws": {
+    "cubase": {
+      "displayName": "Cubase"
+    },
+    "ableton_live": {
+      "displayName": "Ableton Live"
+    },
+    "fl_studio": {
+      "displayName": "FL Studio"
+    },
+    "fender_studio_pro": {
+      "displayName": "Fender Studio Pro"
+    },
+    "logic": {
+      "displayName": "Logic Pro"
+    },
+    "pro_tools": {
+      "displayName": "Pro Tools"
+    },
+    "reaper": {
+      "displayName": "REAPER"
+    },
+    "bitwig": {
+      "displayName": "Bitwig Studio"
+    }
+  },
+  "categories": [
+    {
+      "id": "transport",
+      "label": "トランスポート"
+    },
+    {
+      "id": "navigation",
+      "label": "カーソル移動"
+    },
+    {
+      "id": "edit",
+      "label": "編集"
+    },
+    {
+      "id": "track",
+      "label": "トラック"
+    },
+    {
+      "id": "view",
+      "label": "表示・ズーム"
+    },
+    {
+      "id": "file",
+      "label": "ファイル"
+    }
+  ],
+  "operations": [
+    {
+      "id": "play_stop",
+      "category": "transport",
+      "label": "再生 / 停止",
+      "shortcuts": {
+        "cubase": "Space",
+        "ableton_live": "Space",
+        "fl_studio": "Space",
+        "fender_studio_pro": "Space",
+        "logic": "Space",
+        "pro_tools": "Space",
+        "reaper": "Space",
+        "bitwig": "Space"
+      }
+    },
+    {
+      "id": "record",
+      "category": "transport",
+      "label": "録音開始",
+      "shortcuts": {
+        "cubase": "Num *",
+        "ableton_live": "F9",
+        "fl_studio": "R",
+        "fender_studio_pro": "Num *",
+        "logic": "R",
+        "pro_tools": "Num 3",
+        "reaper": "Ctrl+R"
+      }
+    },
+    {
+      "id": "loop_toggle",
+      "category": "transport",
+      "label": "ループ再生の切り替え",
+      "shortcuts": {
+        "cubase": "Num /",
+        "ableton_live": "Ctrl+L",
+        "fender_studio_pro": "Num /",
+        "logic": "C",
+        "pro_tools": "Ctrl+Shift+L",
+        "reaper": "R"
+      }
+    },
+    {
+      "id": "goto_start",
+      "category": "navigation",
+      "label": "曲頭へ移動",
+      "shortcuts": {
+        "cubase": "Num .",
+        "ableton_live": "Home",
+        "fl_studio": "Home",
+        "fender_studio_pro": "Num .",
+        "logic": "Return",
+        "pro_tools": "Return",
+        "reaper": "W",
+        "bitwig": "Home"
+      }
+    },
+    {
+      "id": "goto_end",
+      "category": "navigation",
+      "label": "曲末へ移動",
+      "shortcuts": {
+        "ableton_live": "End",
+        "fender_studio_pro": "End",
+        "reaper": "End"
+      }
+    },
+    {
+      "id": "rewind",
+      "category": "navigation",
+      "label": "巻き戻し",
+      "shortcuts": {
+        "cubase": "Num -",
+        "fender_studio_pro": "Num -",
+        "logic": ",",
+        "pro_tools": "Num 1",
+        "reaper": "Ctrl+Left"
+      }
+    },
+    {
+      "id": "forward",
+      "category": "navigation",
+      "label": "早送り",
+      "shortcuts": {
+        "cubase": "Num +",
+        "fender_studio_pro": "Num +",
+        "logic": ".",
+        "pro_tools": "Num 2",
+        "reaper": "Ctrl+Right"
+      }
+    },
+    {
+      "id": "bar_backward",
+      "category": "navigation",
+      "label": "1小節戻る",
+      "shortcuts": {
+        "logic": ","
+      }
+    },
+    {
+      "id": "bar_forward",
+      "category": "navigation",
+      "label": "1小節進む",
+      "shortcuts": {
+        "logic": "."
+      }
+    },
+    {
+      "id": "prev_event",
+      "category": "navigation",
+      "label": "前のイベントへ移動",
+      "shortcuts": {
+        "cubase": "B",
+        "fender_studio_pro": "B",
+        "pro_tools": "Ctrl+Tab",
+        "reaper": "Shift+Tab"
+      }
+    },
+    {
+      "id": "next_event",
+      "category": "navigation",
+      "label": "次のイベントへ移動",
+      "shortcuts": {
+        "cubase": "N",
+        "fender_studio_pro": "N",
+        "pro_tools": "Tab",
+        "reaper": "Tab"
+      }
+    },
+    {
+      "id": "goto_left_locator",
+      "category": "navigation",
+      "label": "左ロケーターへ移動",
+      "shortcuts": {
+        "cubase": "Num 1"
+      }
+    },
+    {
+      "id": "goto_right_locator",
+      "category": "navigation",
+      "label": "右ロケーターへ移動",
+      "shortcuts": {
+        "cubase": "Num 2"
+      }
+    },
+    {
+      "id": "prev_marker",
+      "category": "navigation",
+      "label": "前のマーカーへ移動",
+      "shortcuts": {
+        "cubase": "Shift+B",
+        "fender_studio_pro": "Shift+B",
+        "reaper": "["
+      }
+    },
+    {
+      "id": "next_marker",
+      "category": "navigation",
+      "label": "次のマーカーへ移動",
+      "shortcuts": {
+        "cubase": "Shift+N",
+        "fender_studio_pro": "Shift+N",
+        "reaper": "]"
+      }
+    },
+    {
+      "id": "scroll_backward",
+      "category": "navigation",
+      "label": "左へスクロール(カーソル固定)",
+      "shortcuts": {
+        "cubase": "Shift+ホイール",
+        "fl_studio": "Shift+ホイール",
+        "fender_studio_pro": "Shift+ホイール",
+        "reaper": "Alt+Left"
+      }
+    },
+    {
+      "id": "scroll_forward",
+      "category": "navigation",
+      "label": "右へスクロール(カーソル固定)",
+      "shortcuts": {
+        "cubase": "Shift+ホイール",
+        "fl_studio": "Shift+ホイール",
+        "fender_studio_pro": "Shift+ホイール",
+        "reaper": "Alt+Right"
+      }
+    },
+    {
+      "id": "metronome",
+      "category": "transport",
+      "label": "メトロノームの切り替え",
+      "shortcuts": {
+        "cubase": "C",
+        "fl_studio": "Ctrl+M",
+        "fender_studio_pro": "C",
+        "logic": "K",
+        "pro_tools": "Num 7"
+      }
+    },
+    {
+      "id": "tap_tempo",
+      "category": "transport",
+      "label": "タップテンポ",
+      "shortcuts": {
+        "logic": "Shift+T"
+      }
+    },
+    {
+      "id": "undo",
+      "category": "edit",
+      "label": "元に戻す",
+      "shortcuts": {
+        "cubase": "Ctrl+Z",
+        "ableton_live": "Ctrl+Z",
+        "fl_studio": "Ctrl+Z",
+        "fender_studio_pro": "Ctrl+Z",
+        "logic": "Cmd+Z",
+        "pro_tools": "Ctrl+Z",
+        "reaper": "Ctrl+Z",
+        "bitwig": "Ctrl+Z"
+      }
+    },
+    {
+      "id": "redo",
+      "category": "edit",
+      "label": "やり直し",
+      "shortcuts": {
+        "cubase": "Ctrl+Shift+Z",
+        "ableton_live": "Ctrl+Y",
+        "fl_studio": "Ctrl+Shift+Z",
+        "fender_studio_pro": "Ctrl+Y",
+        "logic": "Shift+Cmd+Z",
+        "pro_tools": "Ctrl+Shift+Z",
+        "reaper": "Ctrl+Shift+Z",
+        "bitwig": "Ctrl+Y"
+      }
+    },
+    {
+      "id": "cut",
+      "category": "edit",
+      "label": "切り取り",
+      "shortcuts": {
+        "cubase": "Ctrl+X",
+        "ableton_live": "Ctrl+X",
+        "fl_studio": "Ctrl+X",
+        "fender_studio_pro": "Ctrl+X",
+        "logic": "Cmd+X",
+        "pro_tools": "Ctrl+X",
+        "reaper": "Ctrl+X",
+        "bitwig": "Ctrl+X"
+      }
+    },
+    {
+      "id": "copy",
+      "category": "edit",
+      "label": "コピー",
+      "shortcuts": {
+        "cubase": "Ctrl+C",
+        "ableton_live": "Ctrl+C",
+        "fl_studio": "Ctrl+C",
+        "fender_studio_pro": "Ctrl+C",
+        "logic": "Cmd+C",
+        "pro_tools": "Ctrl+C",
+        "reaper": "Ctrl+C",
+        "bitwig": "Ctrl+C"
+      }
+    },
+    {
+      "id": "paste",
+      "category": "edit",
+      "label": "貼り付け",
+      "shortcuts": {
+        "cubase": "Ctrl+V",
+        "ableton_live": "Ctrl+V",
+        "fl_studio": "Ctrl+V",
+        "fender_studio_pro": "Ctrl+V",
+        "logic": "Cmd+V",
+        "pro_tools": "Ctrl+V",
+        "reaper": "Ctrl+V",
+        "bitwig": "Ctrl+V"
+      }
+    },
+    {
+      "id": "duplicate",
+      "category": "edit",
+      "label": "複製(リピート)",
+      "shortcuts": {
+        "cubase": "Ctrl+D",
+        "ableton_live": "Ctrl+D",
+        "fl_studio": "Ctrl+B",
+        "fender_studio_pro": "D",
+        "logic": "Cmd+R",
+        "pro_tools": "Ctrl+D",
+        "bitwig": "Ctrl+D"
+      }
+    },
+    {
+      "id": "delete",
+      "category": "edit",
+      "label": "削除",
+      "shortcuts": {
+        "cubase": "Delete",
+        "ableton_live": "Delete",
+        "fl_studio": "Delete",
+        "fender_studio_pro": "Delete",
+        "logic": "Delete",
+        "pro_tools": "Delete",
+        "reaper": "Delete",
+        "bitwig": "Delete"
+      }
+    },
+    {
+      "id": "split",
+      "category": "edit",
+      "label": "分割(カーソル位置で)",
+      "shortcuts": {
+        "cubase": "Alt+X",
+        "ableton_live": "Ctrl+E",
+        "fender_studio_pro": "Alt+X",
+        "logic": "Cmd+T",
+        "pro_tools": "Ctrl+E",
+        "reaper": "S",
+        "bitwig": "Ctrl+E"
+      }
+    },
+    {
+      "id": "glue",
+      "category": "edit",
+      "label": "結合(統合)",
+      "shortcuts": {
+        "ableton_live": "Ctrl+J",
+        "fender_studio_pro": "Ctrl+B",
+        "logic": "Cmd+J",
+        "pro_tools": "Alt+Shift+3",
+        "bitwig": "Ctrl+J"
+      }
+    },
+    {
+      "id": "quantize",
+      "category": "edit",
+      "label": "クオンタイズ",
+      "shortcuts": {
+        "cubase": "Q",
+        "ableton_live": "Ctrl+U",
+        "fl_studio": "Ctrl+Q",
+        "fender_studio_pro": "Q",
+        "logic": "Q",
+        "pro_tools": "Alt+0",
+        "reaper": "Q",
+        "bitwig": "Q"
+      }
+    },
+    {
+      "id": "select_all",
+      "category": "edit",
+      "label": "すべて選択",
+      "shortcuts": {
+        "cubase": "Ctrl+A",
+        "ableton_live": "Ctrl+A",
+        "fl_studio": "Ctrl+A",
+        "fender_studio_pro": "Ctrl+A",
+        "logic": "Cmd+A",
+        "pro_tools": "Ctrl+A",
+        "reaper": "Ctrl+A",
+        "bitwig": "Ctrl+A"
+      }
+    },
+    {
+      "id": "snap_toggle",
+      "category": "edit",
+      "label": "スナップの切り替え",
+      "shortcuts": {
+        "cubase": "J",
+        "ableton_live": "Ctrl+4",
+        "fender_studio_pro": "N",
+        "pro_tools": "F4",
+        "reaper": "Alt+S"
+      }
+    },
+    {
+      "id": "new_audio_track",
+      "category": "track",
+      "label": "新規オーディオトラック",
+      "shortcuts": {
+        "ableton_live": "Ctrl+T",
+        "fender_studio_pro": "T",
+        "logic": "Opt+Cmd+A",
+        "pro_tools": "Ctrl+Shift+N",
+        "reaper": "Ctrl+T",
+        "bitwig": "Ctrl+T"
+      }
+    },
+    {
+      "id": "new_inst_track",
+      "category": "track",
+      "label": "新規MIDI/インストトラック",
+      "shortcuts": {
+        "ableton_live": "Ctrl+Shift+T",
+        "logic": "Opt+Cmd+S",
+        "pro_tools": "Ctrl+Shift+N",
+        "reaper": "Ctrl+T",
+        "bitwig": "Ctrl+Shift+T"
+      }
+    },
+    {
+      "id": "mute_track",
+      "category": "track",
+      "label": "トラックをミュート",
+      "shortcuts": {
+        "cubase": "M",
+        "ableton_live": "0",
+        "fender_studio_pro": "M",
+        "logic": "M",
+        "pro_tools": "Shift+M"
+      }
+    },
+    {
+      "id": "solo_track",
+      "category": "track",
+      "label": "トラックをソロ",
+      "shortcuts": {
+        "cubase": "S",
+        "ableton_live": "S",
+        "fender_studio_pro": "S",
+        "logic": "S",
+        "pro_tools": "Shift+S"
+      }
+    },
+    {
+      "id": "record_arm",
+      "category": "track",
+      "label": "録音待機(アーム)",
+      "shortcuts": {
+        "cubase": "R",
+        "fender_studio_pro": "R",
+        "logic": "Ctrl+R"
+      }
+    },
+    {
+      "id": "duplicate_track",
+      "category": "track",
+      "label": "トラックを複製",
+      "shortcuts": {
+        "ableton_live": "Ctrl+D",
+        "fender_studio_pro": "Ctrl+D",
+        "logic": "Cmd+D",
+        "pro_tools": "Alt+Shift+D",
+        "bitwig": "Ctrl+D"
+      }
+    },
+    {
+      "id": "zoom_in",
+      "category": "view",
+      "label": "ズームイン(水平)",
+      "shortcuts": {
+        "cubase": "H",
+        "ableton_live": "+",
+        "fl_studio": "Page Up",
+        "fender_studio_pro": "E",
+        "logic": "Cmd+Right",
+        "pro_tools": "Ctrl+]",
+        "reaper": "+",
+        "bitwig": "+"
+      }
+    },
+    {
+      "id": "zoom_out",
+      "category": "view",
+      "label": "ズームアウト(水平)",
+      "shortcuts": {
+        "cubase": "G",
+        "ableton_live": "-",
+        "fl_studio": "Page Down",
+        "fender_studio_pro": "W",
+        "logic": "Cmd+Left",
+        "pro_tools": "Ctrl+[",
+        "reaper": "-",
+        "bitwig": "-"
+      }
+    },
+    {
+      "id": "zoom_fit",
+      "category": "view",
+      "label": "全体を表示(ズームフル)",
+      "shortcuts": {
+        "cubase": "Shift+F",
+        "logic": "Z",
+        "pro_tools": "Alt+A"
+      }
+    },
+    {
+      "id": "mixer_toggle",
+      "category": "view",
+      "label": "ミキサー表示の切り替え",
+      "shortcuts": {
+        "cubase": "F3",
+        "fl_studio": "F9",
+        "fender_studio_pro": "F3",
+        "logic": "X",
+        "pro_tools": "Ctrl+=",
+        "reaper": "Ctrl+M",
+        "bitwig": "M"
+      }
+    },
+    {
+      "id": "piano_roll",
+      "category": "view",
+      "label": "ピアノロール/エディタを開く",
+      "shortcuts": {
+        "cubase": "Return",
+        "fl_studio": "F7",
+        "fender_studio_pro": "F2",
+        "logic": "P",
+        "bitwig": "E"
+      }
+    },
+    {
+      "id": "browser_toggle",
+      "category": "view",
+      "label": "ブラウザ表示の切り替え",
+      "shortcuts": {
+        "cubase": "F5",
+        "ableton_live": "Ctrl+Alt+B",
+        "fl_studio": "Alt+F8",
+        "fender_studio_pro": "F5",
+        "logic": "O",
+        "pro_tools": "Alt+;",
+        "reaper": "Ctrl+Alt+X",
+        "bitwig": "B"
+      }
+    },
+    {
+      "id": "save",
+      "category": "file",
+      "label": "保存",
+      "shortcuts": {
+        "cubase": "Ctrl+S",
+        "ableton_live": "Ctrl+S",
+        "fl_studio": "Ctrl+S",
+        "fender_studio_pro": "Ctrl+S",
+        "logic": "Cmd+S",
+        "pro_tools": "Ctrl+S",
+        "reaper": "Ctrl+S",
+        "bitwig": "Ctrl+S"
+      }
+    },
+    {
+      "id": "save_as",
+      "category": "file",
+      "label": "別名で保存",
+      "shortcuts": {
+        "cubase": "Ctrl+Shift+S",
+        "ableton_live": "Ctrl+Shift+S",
+        "fl_studio": "Ctrl+Shift+S",
+        "fender_studio_pro": "Ctrl+Shift+S",
+        "logic": "Shift+Cmd+S",
+        "pro_tools": "Ctrl+Shift+S",
+        "reaper": "Ctrl+Alt+S",
+        "bitwig": "Ctrl+Shift+S"
+      }
+    },
+    {
+      "id": "export_audio",
+      "category": "file",
+      "label": "オーディオ書き出し",
+      "shortcuts": {
+        "ableton_live": "Ctrl+Shift+R",
+        "fl_studio": "Ctrl+R",
+        "fender_studio_pro": "Ctrl+E",
+        "logic": "Cmd+B",
+        "pro_tools": "Ctrl+Alt+B",
+        "reaper": "Ctrl+Alt+R"
+      }
+    },
+    {
+      "id": "new_project",
+      "category": "file",
+      "label": "新規プロジェクト",
+      "shortcuts": {
+        "cubase": "Ctrl+N",
+        "ableton_live": "Ctrl+N",
+        "fender_studio_pro": "Ctrl+N",
+        "logic": "Cmd+N",
+        "pro_tools": "Ctrl+N",
+        "reaper": "Ctrl+N",
+        "bitwig": "Ctrl+N"
+      }
+    }
+  ]
+}

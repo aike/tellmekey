@@ -1,0 +1,646 @@
+{
+  "version": 1,
+  "language": "en",
+  "daws": {
+    "cubase": {
+      "displayName": "Cubase"
+    },
+    "ableton_live": {
+      "displayName": "Ableton Live"
+    },
+    "fl_studio": {
+      "displayName": "FL Studio"
+    },
+    "fender_studio_pro": {
+      "displayName": "Fender Studio Pro"
+    },
+    "logic": {
+      "displayName": "Logic Pro"
+    },
+    "pro_tools": {
+      "displayName": "Pro Tools"
+    },
+    "reaper": {
+      "displayName": "REAPER"
+    },
+    "bitwig": {
+      "displayName": "Bitwig Studio"
+    }
+  },
+  "categories": [
+    {
+      "id": "transport",
+      "label": "Transport"
+    },
+    {
+      "id": "navigation",
+      "label": "Navigation"
+    },
+    {
+      "id": "edit",
+      "label": "Editing"
+    },
+    {
+      "id": "track",
+      "label": "Tracks"
+    },
+    {
+      "id": "view",
+      "label": "View & Zoom"
+    },
+    {
+      "id": "file",
+      "label": "File"
+    }
+  ],
+  "operations": [
+    {
+      "id": "play_stop",
+      "category": "transport",
+      "label": "Play / Stop",
+      "shortcuts": {
+        "cubase": "Space",
+        "ableton_live": "Space",
+        "fl_studio": "Space",
+        "fender_studio_pro": "Space",
+        "logic": "Space",
+        "pro_tools": "Space",
+        "reaper": "Space",
+        "bitwig": "Space"
+      }
+    },
+    {
+      "id": "record",
+      "category": "transport",
+      "label": "Start Recording",
+      "shortcuts": {
+        "cubase": "Num *",
+        "ableton_live": "F9",
+        "fl_studio": "R",
+        "fender_studio_pro": "Num *",
+        "logic": "R",
+        "pro_tools": "Num 3",
+        "reaper": "Ctrl+R"
+      }
+    },
+    {
+      "id": "loop_toggle",
+      "category": "transport",
+      "label": "Toggle Loop Playback",
+      "shortcuts": {
+        "cubase": "Num /",
+        "ableton_live": "Ctrl+L",
+        "fender_studio_pro": "Num /",
+        "logic": "C",
+        "pro_tools": "Ctrl+Shift+L",
+        "reaper": "R"
+      }
+    },
+    {
+      "id": "goto_start",
+      "category": "navigation",
+      "label": "Go to Start",
+      "shortcuts": {
+        "cubase": "Num .",
+        "ableton_live": "Home",
+        "fl_studio": "Home",
+        "fender_studio_pro": "Num .",
+        "logic": "Return",
+        "pro_tools": "Return",
+        "reaper": "W",
+        "bitwig": "Home"
+      }
+    },
+    {
+      "id": "goto_end",
+      "category": "navigation",
+      "label": "Go to End",
+      "shortcuts": {
+        "ableton_live": "End",
+        "fender_studio_pro": "End",
+        "reaper": "End"
+      }
+    },
+    {
+      "id": "rewind",
+      "category": "navigation",
+      "label": "Rewind",
+      "shortcuts": {
+        "cubase": "Num -",
+        "fender_studio_pro": "Num -",
+        "logic": ",",
+        "pro_tools": "Num 1",
+        "reaper": "Ctrl+Left"
+      }
+    },
+    {
+      "id": "forward",
+      "category": "navigation",
+      "label": "Forward",
+      "shortcuts": {
+        "cubase": "Num +",
+        "fender_studio_pro": "Num +",
+        "logic": ".",
+        "pro_tools": "Num 2",
+        "reaper": "Ctrl+Right"
+      }
+    },
+    {
+      "id": "bar_backward",
+      "category": "navigation",
+      "label": "Back One Bar",
+      "shortcuts": {
+        "logic": ","
+      }
+    },
+    {
+      "id": "bar_forward",
+      "category": "navigation",
+      "label": "Forward One Bar",
+      "shortcuts": {
+        "logic": "."
+      }
+    },
+    {
+      "id": "prev_event",
+      "category": "navigation",
+      "label": "Locate Previous Event",
+      "shortcuts": {
+        "cubase": "B",
+        "fender_studio_pro": "B",
+        "pro_tools": "Ctrl+Tab",
+        "reaper": "Shift+Tab"
+      }
+    },
+    {
+      "id": "next_event",
+      "category": "navigation",
+      "label": "Locate Next Event",
+      "shortcuts": {
+        "cubase": "N",
+        "fender_studio_pro": "N",
+        "pro_tools": "Tab",
+        "reaper": "Tab"
+      }
+    },
+    {
+      "id": "goto_left_locator",
+      "category": "navigation",
+      "label": "Go to Left Locator",
+      "shortcuts": {
+        "cubase": "Num 1"
+      }
+    },
+    {
+      "id": "goto_right_locator",
+      "category": "navigation",
+      "label": "Go to Right Locator",
+      "shortcuts": {
+        "cubase": "Num 2"
+      }
+    },
+    {
+      "id": "prev_marker",
+      "category": "navigation",
+      "label": "Previous Marker",
+      "shortcuts": {
+        "cubase": "Shift+B",
+        "fender_studio_pro": "Shift+B",
+        "reaper": "["
+      }
+    },
+    {
+      "id": "next_marker",
+      "category": "navigation",
+      "label": "Next Marker",
+      "shortcuts": {
+        "cubase": "Shift+N",
+        "fender_studio_pro": "Shift+N",
+        "reaper": "]"
+      }
+    },
+    {
+      "id": "scroll_backward",
+      "category": "navigation",
+      "label": "Scroll Left (No Cursor Move)",
+      "shortcuts": {
+        "cubase": "Shift+Wheel",
+        "fl_studio": "Shift+Wheel",
+        "fender_studio_pro": "Shift+Wheel",
+        "reaper": "Alt+Left"
+      }
+    },
+    {
+      "id": "scroll_forward",
+      "category": "navigation",
+      "label": "Scroll Right (No Cursor Move)",
+      "shortcuts": {
+        "cubase": "Shift+Wheel",
+        "fl_studio": "Shift+Wheel",
+        "fender_studio_pro": "Shift+Wheel",
+        "reaper": "Alt+Right"
+      }
+    },
+    {
+      "id": "metronome",
+      "category": "transport",
+      "label": "Toggle Metronome",
+      "shortcuts": {
+        "cubase": "C",
+        "fl_studio": "Ctrl+M",
+        "fender_studio_pro": "C",
+        "logic": "K",
+        "pro_tools": "Num 7"
+      }
+    },
+    {
+      "id": "tap_tempo",
+      "category": "transport",
+      "label": "Tap Tempo",
+      "shortcuts": {
+        "logic": "Shift+T"
+      }
+    },
+    {
+      "id": "undo",
+      "category": "edit",
+      "label": "Undo",
+      "shortcuts": {
+        "cubase": "Ctrl+Z",
+        "ableton_live": "Ctrl+Z",
+        "fl_studio": "Ctrl+Z",
+        "fender_studio_pro": "Ctrl+Z",
+        "logic": "Cmd+Z",
+        "pro_tools": "Ctrl+Z",
+        "reaper": "Ctrl+Z",
+        "bitwig": "Ctrl+Z"
+      }
+    },
+    {
+      "id": "redo",
+      "category": "edit",
+      "label": "Redo",
+      "shortcuts": {
+        "cubase": "Ctrl+Shift+Z",
+        "ableton_live": "Ctrl+Y",
+        "fl_studio": "Ctrl+Shift+Z",
+        "fender_studio_pro": "Ctrl+Y",
+        "logic": "Shift+Cmd+Z",
+        "pro_tools": "Ctrl+Shift+Z",
+        "reaper": "Ctrl+Shift+Z",
+        "bitwig": "Ctrl+Y"
+      }
+    },
+    {
+      "id": "cut",
+      "category": "edit",
+      "label": "Cut",
+      "shortcuts": {
+        "cubase": "Ctrl+X",
+        "ableton_live": "Ctrl+X",
+        "fl_studio": "Ctrl+X",
+        "fender_studio_pro": "Ctrl+X",
+        "logic": "Cmd+X",
+        "pro_tools": "Ctrl+X",
+        "reaper": "Ctrl+X",
+        "bitwig": "Ctrl+X"
+      }
+    },
+    {
+      "id": "copy",
+      "category": "edit",
+      "label": "Copy",
+      "shortcuts": {
+        "cubase": "Ctrl+C",
+        "ableton_live": "Ctrl+C",
+        "fl_studio": "Ctrl+C",
+        "fender_studio_pro": "Ctrl+C",
+        "logic": "Cmd+C",
+        "pro_tools": "Ctrl+C",
+        "reaper": "Ctrl+C",
+        "bitwig": "Ctrl+C"
+      }
+    },
+    {
+      "id": "paste",
+      "category": "edit",
+      "label": "Paste",
+      "shortcuts": {
+        "cubase": "Ctrl+V",
+        "ableton_live": "Ctrl+V",
+        "fl_studio": "Ctrl+V",
+        "fender_studio_pro": "Ctrl+V",
+        "logic": "Cmd+V",
+        "pro_tools": "Ctrl+V",
+        "reaper": "Ctrl+V",
+        "bitwig": "Ctrl+V"
+      }
+    },
+    {
+      "id": "duplicate",
+      "category": "edit",
+      "label": "Duplicate (Repeat)",
+      "shortcuts": {
+        "cubase": "Ctrl+D",
+        "ableton_live": "Ctrl+D",
+        "fl_studio": "Ctrl+B",
+        "fender_studio_pro": "D",
+        "logic": "Cmd+R",
+        "pro_tools": "Ctrl+D",
+        "bitwig": "Ctrl+D"
+      }
+    },
+    {
+      "id": "delete",
+      "category": "edit",
+      "label": "Delete",
+      "shortcuts": {
+        "cubase": "Delete",
+        "ableton_live": "Delete",
+        "fl_studio": "Delete",
+        "fender_studio_pro": "Delete",
+        "logic": "Delete",
+        "pro_tools": "Delete",
+        "reaper": "Delete",
+        "bitwig": "Delete"
+      }
+    },
+    {
+      "id": "split",
+      "category": "edit",
+      "label": "Split at Cursor",
+      "shortcuts": {
+        "cubase": "Alt+X",
+        "ableton_live": "Ctrl+E",
+        "fender_studio_pro": "Alt+X",
+        "logic": "Cmd+T",
+        "pro_tools": "Ctrl+E",
+        "reaper": "S",
+        "bitwig": "Ctrl+E"
+      }
+    },
+    {
+      "id": "glue",
+      "category": "edit",
+      "label": "Glue (Consolidate)",
+      "shortcuts": {
+        "ableton_live": "Ctrl+J",
+        "fender_studio_pro": "Ctrl+B",
+        "logic": "Cmd+J",
+        "pro_tools": "Alt+Shift+3",
+        "bitwig": "Ctrl+J"
+      }
+    },
+    {
+      "id": "quantize",
+      "category": "edit",
+      "label": "Quantize",
+      "shortcuts": {
+        "cubase": "Q",
+        "ableton_live": "Ctrl+U",
+        "fl_studio": "Ctrl+Q",
+        "fender_studio_pro": "Q",
+        "logic": "Q",
+        "pro_tools": "Alt+0",
+        "reaper": "Q",
+        "bitwig": "Q"
+      }
+    },
+    {
+      "id": "select_all",
+      "category": "edit",
+      "label": "Select All",
+      "shortcuts": {
+        "cubase": "Ctrl+A",
+        "ableton_live": "Ctrl+A",
+        "fl_studio": "Ctrl+A",
+        "fender_studio_pro": "Ctrl+A",
+        "logic": "Cmd+A",
+        "pro_tools": "Ctrl+A",
+        "reaper": "Ctrl+A",
+        "bitwig": "Ctrl+A"
+      }
+    },
+    {
+      "id": "snap_toggle",
+      "category": "edit",
+      "label": "Toggle Snap",
+      "shortcuts": {
+        "cubase": "J",
+        "ableton_live": "Ctrl+4",
+        "fender_studio_pro": "N",
+        "pro_tools": "F4",
+        "reaper": "Alt+S"
+      }
+    },
+    {
+      "id": "new_audio_track",
+      "category": "track",
+      "label": "New Audio Track",
+      "shortcuts": {
+        "ableton_live": "Ctrl+T",
+        "fender_studio_pro": "T",
+        "logic": "Opt+Cmd+A",
+        "pro_tools": "Ctrl+Shift+N",
+        "reaper": "Ctrl+T",
+        "bitwig": "Ctrl+T"
+      }
+    },
+    {
+      "id": "new_inst_track",
+      "category": "track",
+      "label": "New MIDI/Instrument Track",
+      "shortcuts": {
+        "ableton_live": "Ctrl+Shift+T",
+        "logic": "Opt+Cmd+S",
+        "pro_tools": "Ctrl+Shift+N",
+        "reaper": "Ctrl+T",
+        "bitwig": "Ctrl+Shift+T"
+      }
+    },
+    {
+      "id": "mute_track",
+      "category": "track",
+      "label": "Mute Track",
+      "shortcuts": {
+        "cubase": "M",
+        "ableton_live": "0",
+        "fender_studio_pro": "M",
+        "logic": "M",
+        "pro_tools": "Shift+M"
+      }
+    },
+    {
+      "id": "solo_track",
+      "category": "track",
+      "label": "Solo Track",
+      "shortcuts": {
+        "cubase": "S",
+        "ableton_live": "S",
+        "fender_studio_pro": "S",
+        "logic": "S",
+        "pro_tools": "Shift+S"
+      }
+    },
+    {
+      "id": "record_arm",
+      "category": "track",
+      "label": "Record Arm",
+      "shortcuts": {
+        "cubase": "R",
+        "fender_studio_pro": "R",
+        "logic": "Ctrl+R"
+      }
+    },
+    {
+      "id": "duplicate_track",
+      "category": "track",
+      "label": "Duplicate Track",
+      "shortcuts": {
+        "ableton_live": "Ctrl+D",
+        "fender_studio_pro": "Ctrl+D",
+        "logic": "Cmd+D",
+        "pro_tools": "Alt+Shift+D",
+        "bitwig": "Ctrl+D"
+      }
+    },
+    {
+      "id": "zoom_in",
+      "category": "view",
+      "label": "Zoom In (Horizontal)",
+      "shortcuts": {
+        "cubase": "H",
+        "ableton_live": "+",
+        "fl_studio": "Page Up",
+        "fender_studio_pro": "E",
+        "logic": "Cmd+Right",
+        "pro_tools": "Ctrl+]",
+        "reaper": "+",
+        "bitwig": "+"
+      }
+    },
+    {
+      "id": "zoom_out",
+      "category": "view",
+      "label": "Zoom Out (Horizontal)",
+      "shortcuts": {
+        "cubase": "G",
+        "ableton_live": "-",
+        "fl_studio": "Page Down",
+        "fender_studio_pro": "W",
+        "logic": "Cmd+Left",
+        "pro_tools": "Ctrl+[",
+        "reaper": "-",
+        "bitwig": "-"
+      }
+    },
+    {
+      "id": "zoom_fit",
+      "category": "view",
+      "label": "Zoom to Fit",
+      "shortcuts": {
+        "cubase": "Shift+F",
+        "logic": "Z",
+        "pro_tools": "Alt+A"
+      }
+    },
+    {
+      "id": "mixer_toggle",
+      "category": "view",
+      "label": "Toggle Mixer",
+      "shortcuts": {
+        "cubase": "F3",
+        "fl_studio": "F9",
+        "fender_studio_pro": "F3",
+        "logic": "X",
+        "pro_tools": "Ctrl+=",
+        "reaper": "Ctrl+M",
+        "bitwig": "M"
+      }
+    },
+    {
+      "id": "piano_roll",
+      "category": "view",
+      "label": "Open Piano Roll / Editor",
+      "shortcuts": {
+        "cubase": "Return",
+        "fl_studio": "F7",
+        "fender_studio_pro": "F2",
+        "logic": "P",
+        "bitwig": "E"
+      }
+    },
+    {
+      "id": "browser_toggle",
+      "category": "view",
+      "label": "Toggle Browser",
+      "shortcuts": {
+        "cubase": "F5",
+        "ableton_live": "Ctrl+Alt+B",
+        "fl_studio": "Alt+F8",
+        "fender_studio_pro": "F5",
+        "logic": "O",
+        "pro_tools": "Alt+;",
+        "reaper": "Ctrl+Alt+X",
+        "bitwig": "B"
+      }
+    },
+    {
+      "id": "save",
+      "category": "file",
+      "label": "Save",
+      "shortcuts": {
+        "cubase": "Ctrl+S",
+        "ableton_live": "Ctrl+S",
+        "fl_studio": "Ctrl+S",
+        "fender_studio_pro": "Ctrl+S",
+        "logic": "Cmd+S",
+        "pro_tools": "Ctrl+S",
+        "reaper": "Ctrl+S",
+        "bitwig": "Ctrl+S"
+      }
+    },
+    {
+      "id": "save_as",
+      "category": "file",
+      "label": "Save As",
+      "shortcuts": {
+        "cubase": "Ctrl+Shift+S",
+        "ableton_live": "Ctrl+Shift+S",
+        "fl_studio": "Ctrl+Shift+S",
+        "fender_studio_pro": "Ctrl+Shift+S",
+        "logic": "Shift+Cmd+S",
+        "pro_tools": "Ctrl+Shift+S",
+        "reaper": "Ctrl+Alt+S",
+        "bitwig": "Ctrl+Shift+S"
+      }
+    },
+    {
+      "id": "export_audio",
+      "category": "file",
+      "label": "Export Audio",
+      "shortcuts": {
+        "ableton_live": "Ctrl+Shift+R",
+        "fl_studio": "Ctrl+R",
+        "fender_studio_pro": "Ctrl+E",
+        "logic": "Cmd+B",
+        "pro_tools": "Ctrl+Alt+B",
+        "reaper": "Ctrl+Alt+R"
+      }
+    },
+    {
+      "id": "new_project",
+      "category": "file",
+      "label": "New Project",
+      "shortcuts": {
+        "cubase": "Ctrl+N",
+        "ableton_live": "Ctrl+N",
+        "fender_studio_pro": "Ctrl+N",
+        "logic": "Cmd+N",
+        "pro_tools": "Ctrl+N",
+        "reaper": "Ctrl+N",
+        "bitwig": "Ctrl+N"
+      }
+    }
+  ]
+}

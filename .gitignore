@@ -1,0 +1,23 @@
+# ビルド成果物
+build/
+cmake-build-*/
+
+# 外部依存(JUCEはFetchContent/事前clone、WebView2 SDKはNuGetから取得)
+external/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Xcode / macOS
+*.xcworkspace/
+xcuserdata/
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# その他
+*.log
