@@ -103,7 +103,7 @@ function render() {
   const banner = $("warningBanner");
   if (state.loadError) {
     banner.textContent =
-      "カスタムJSONの読み込みに失敗しました(文法エラーまたはファイルなし)。同梱のデフォルト定義を表示しています。";
+      "カスタムJSONの読み込みに失敗しました(文法エラーまたはファイルなし)。デフォルト定義を表示しています。";
     banner.classList.remove("hidden");
   } else {
     banner.classList.add("hidden");
@@ -174,7 +174,7 @@ function renderList() {
 }
 
 function renderSettings() {
-  $("keymapSource").textContent = state.customPath ? state.customPath : "同梱デフォルト";
+  $("keymapSource").textContent = state.customPath ? state.customPath : "デフォルト";
 }
 
 /* ---- keymap loading ---- */
